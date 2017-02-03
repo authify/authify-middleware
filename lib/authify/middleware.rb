@@ -14,3 +14,4 @@ module Authify
 end
 
 require 'authify/middleware/version'
+require 'authify/middleware/jwt_auth'
