@@ -1,5 +1,13 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.3.1
+- 2.3.1
 before_install: gem install bundler -v 1.12.5
+deploy:
+  provider: rubygems
+  api_key:
+    secure: ridG3uj0YeuDXhwzmLv1442PF4OgHXUi8onxg3OT/t3dEBlrSnIsNZ6ceT1wRn6amAt1/s+f8rvAW5CkyWh9VkuCyRisOd2pYejXRHXwDrU/4DVy5yE9gHxvWXZU45gRWOjwdfziXoFtXcRVs1KcQ4ApMt6zJn1OEPJXfuG4rordiPHbVn8TN77p5GMA5OQK3NFrfvPQbNCx9yA4wqnPWGLh2qJDIoWljQqQm8ind6vjs5H8c8vF44qafNLMP2CPp4YnH/gO3Ff2viz5Q9UjKlz8+ZxHR0HkAYOjGOVSH1HVzzPVrneY8iYNieAAwskEu+TB8oh9LgExkYkOMX5uuyWE2QaZKMHCG4bMARt59yXok+tnZyC79/TUXYJwX/J0wsg4qdxKvF2YmVQjzBELQE0pZNw+1sgfRH1pMieo6sPEUwBSWbC6BKPJr74IC4U32oNDAtvR40I/+oT/HFEjBVpNY4nkFbe+v0erZ5qSjIJiZ4CNmS9BKkrYtn5070b0m++woEjBMcPDgt28Pua6F6+xZlP0YBRBznaGO77OkCGTmJjC13viaqRbxtJT2IXXyA1r0aZSVCZ8zXMHHg5NL0wBqXuYt3737kybMlR8o/IPZ/xVTiizazxy//b24dfk8nGzvgWncwJEcKW2U7g/Ru4FBF24fEZioobjZfLleH8=
+  gem: authify-middleware
+  on:
+    tags: true
+    repo: knuedge/authify-middleware
