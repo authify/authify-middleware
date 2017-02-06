@@ -11,28 +11,29 @@ module Authify
       # rubocop:disable Metrics/MethodLength
       # rubocop:disable Metrics/AbcSize
       def call(env)
-        payload = process_token(env)
+        begin
+          payload = process_token(env)
 
-        env[:scopes] = payload['scopes']
-        env[:user] = payload['user']
-        env[:authenticated] = Time.now
-      rescue JWT::DecodeError => e
-        env[:authenticated] = false
-        env[:authentication_errors] ||= []
-        env[:authentication_errors] << e
-      rescue JWT::ExpiredSignature => e
-        env[:authenticated] = false
-        env[:authentication_errors] ||= []
-        env[:authentication_errors] << e
-      rescue JWT::InvalidIssuerError => e
-        env[:authenticated] = false
-        env[:authentication_errors] ||= []
-        env[:authentication_errors] << e
-      rescue JWT::InvalidIatError => e
-        env[:authenticated] = false
-        env[:authentication_errors] ||= []
-        env[:authentication_errors] << e
-      ensure
+          env[:scopes] = payload['scopes']
+          env[:user] = payload['user']
+          env[:authenticated] = Time.now
+        rescue JWT::DecodeError => e
+          env[:authenticated] = false
+          env[:authentication_errors] ||= []
+          env[:authentication_errors] << e
+        rescue JWT::ExpiredSignature => e
+          env[:authenticated] = false
+          env[:authentication_errors] ||= []
+          env[:authentication_errors] << e
+        rescue JWT::InvalidIssuerError => e
+          env[:authenticated] = false
+          env[:authentication_errors] ||= []
+          env[:authentication_errors] << e
+        rescue JWT::InvalidIatError => e
+          env[:authenticated] = false
+          env[:authentication_errors] ||= []
+          env[:authentication_errors] << e
+        end
         @app.call env
       end
 
