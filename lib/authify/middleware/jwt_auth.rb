@@ -3,7 +3,7 @@ module Authify
     # Auth Middleware
     class JWTAuth
       include Core::Helpers::JWTSSL
-      
+
       def initialize(app)
         @app = app
       end
