@@ -9,12 +9,13 @@ module Authify
       end
 
       # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/AbcSize
       def call(env)
         payload = process_token
 
         env[:scopes] = payload['scopes']
         env[:user] = payload['user']
-        env[:authenticated] = true
+        env[:authenticated] = Time.now
       rescue JWT::DecodeError => e
         env[:authenticated] = false
         env[:authentication_errors] ||= []
