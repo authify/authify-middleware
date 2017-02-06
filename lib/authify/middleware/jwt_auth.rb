@@ -11,7 +11,7 @@ module Authify
       # rubocop:disable Metrics/MethodLength
       # rubocop:disable Metrics/AbcSize
       def call(env)
-        payload = process_token
+        payload = process_token(env)
 
         env[:scopes] = payload['scopes']
         env[:user] = payload['user']
@@ -38,7 +38,7 @@ module Authify
 
       private
 
-      def process_token
+      def process_token(env)
         options = {
           algorithm: 'ES256',
           verify_iss: true,
