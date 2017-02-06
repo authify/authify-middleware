@@ -14,6 +14,7 @@ module Authify
 
         env[:scopes] = payload['scopes']
         env[:user] = payload['user']
+        env[:authenticated] = true
       rescue JWT::DecodeError => e
         env[:authenticated] = false
         env[:authentication_errors] ||= []
