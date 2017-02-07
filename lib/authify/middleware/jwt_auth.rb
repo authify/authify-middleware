@@ -41,7 +41,7 @@ module Authify
 
       def process_token(env)
         options = {
-          algorithm: 'ES256',
+          algorithm: 'ES512',
           verify_iss: true,
           verify_iat: true,
           iss: CONFIG[:jwt][:issuer]
